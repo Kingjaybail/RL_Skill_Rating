@@ -76,17 +76,17 @@ root = tk.Tk()
 root.title("Skill Score Plotter")
 root.geometry("1280x720")
 
-# Create a frame for the plot
-frame_plot = tk.Frame(root)
-frame_plot.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
-
 # Create a separate frame for the button
 frame_button = tk.Frame(root)
-frame_button.pack(side=tk.BOTTOM, pady=10)
-
+frame_button.pack(side=tk.TOP, pady=10)
 # Create a button to open the file dialog
 btn_open_file = tk.Button(frame_button, text="Open CSV File", command=open_file)
 btn_open_file.pack()
+# Create a frame for the plot
+frame_plot = tk.Frame(root)
+frame_plot.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+
+
 
 # Start the Tkinter main loop
 root.mainloop()
