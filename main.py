@@ -6,6 +6,17 @@ from tkinter import filedialog
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from get_team_goals import get_total_goals
 
+
+def read_csv_with_sep(file_path):
+    with open(file_path, 'r') as file:
+        first_line = file.readline()
+        if ';' in first_line:
+            sep = ';'
+        else:
+            sep = ','
+    return sep
+
+
 def open_file():
     # Open file dialog and get file path
     file_path = filedialog.askopenfilename(filetypes=[("CSV Files", "*.csv")])
@@ -13,7 +24,7 @@ def open_file():
         return
 
     # Read the CSV file
-    df = pd.read_csv(file_path, encoding='utf-8')
+    df = pd.read_csv(file_path, encoding='utf-8', sep=read_csv_with_sep(file_path))
 
     # Process data and calculate skill score
     data = df.sort_values(by=['goals per game'], na_position='last', ascending=False)
